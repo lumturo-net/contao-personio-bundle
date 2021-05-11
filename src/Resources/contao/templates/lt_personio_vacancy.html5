@@ -1,0 +1,18 @@
+<h1><?= $this->vacancy['name']; ?></h1>
+<strong>ID: <?= $this->vacancy['id']; ?></strong>
+<strong><?= $this->vacancy['subcompany']; ?></strong><br>
+<strong><?= $this->vacancy['office']; ?></strong><br>
+<strong><?= $this->vacancy['recruitingCategory']; ?></strong><br>
+<strong><?= $this->vacancy['name']; ?></strong><br>
+<?php foreach($this->vacancy['jobDescriptions'] as $jobDescriptions): foreach($jobDescriptions as $jobDescription): ?>
+<strong><?= $jobDescription['name']; ?></strong>
+<p><?= $jobDescription['value']; ?></p>
+<?php endforeach; endforeach; ?>
+<strong><?= $this->vacancy['employmentType']; ?></strong><br>
+<strong><?= $this->vacancy['seniority']; ?></strong><br>
+<strong><?= $this->vacancy['schedule']; ?></strong><br>
+<strong><?= $this->vacancy['yearsOfExperience']; ?></strong><br>
+<strong><?= $this->vacancy['keywords']; ?></strong><br>
+<strong><?= $this->vacancy['occupation']; ?></strong><br>
+<strong><?= $this->vacancy['occupationCategory']; ?></strong><br>
+<strong><?= date_create($this->vacancy['createdAt'])->format('d.m.Y'); ?></strong><br>

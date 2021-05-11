@@ -1,0 +1,29 @@
+<?php
+if(!empty($this->vacancies)): ?>
+
+<?php foreach($this->vacancies as $vacancy): ?>
+<h1><?= $vacancy['name']; ?></h1>
+<strong>ID: <?= $vacancy['id']; ?></strong>
+<strong><?= $vacancy['subcompany']; ?></strong><br>
+<strong><?= $vacancy['office']; ?></strong><br>
+<strong><?= $vacancy['recruitingCategory']; ?></strong><br>
+<strong><?= $vacancy['name']; ?></strong><br>
+<?php foreach($vacancy['jobDescriptions'] as $jobDescriptions): foreach($jobDescriptions as $jobDescription): ?>
+<strong><?= $jobDescription['name']; ?></strong>
+<p><?= $jobDescription['value']; ?></p>
+<?php endforeach; endforeach; ?>
+<strong><?= $vacancy['employmentType']; ?></strong><br>
+<strong><?= $vacancy['seniority']; ?></strong><br>
+<strong><?= $vacancy['schedule']; ?></strong><br>
+<strong><?= $vacancy['yearsOfExperience']; ?></strong><br>
+<strong><?= $vacancy['keywords']; ?></strong><br>
+<strong><?= $vacancy['occupation']; ?></strong><br>
+<strong><?= $vacancy['occupationCategory']; ?></strong><br>
+<strong><?= date_create($vacancy['createdAt'])->format('d.m.Y'); ?></strong><br>
+<a href="<?= $vacancy['detailpage']; ?>">Details</a>
+<hr>
+<?php endforeach; ?>
+
+<?php else: ?>
+<h1>Es sind keine Jobangebote vorhanden.</h1>
+<?php endif; ?>
