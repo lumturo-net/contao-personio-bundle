@@ -29,7 +29,7 @@
         "symfony/phpunit-bridge": "^4.4 || ^5.1"
     },
     "extra": {
-        "contao-manager-plugin": "LumturNet\\ContaoPersonioBundle\\ContaoManager\\Plugin"
+        "contao-manager-plugin": "LumturoNet\\ContaoPersonioBundle\\ContaoManager\\Plugin"
     },
     "autoload": {
         "psr-4": {
