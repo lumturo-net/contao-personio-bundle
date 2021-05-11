@@ -20,6 +20,8 @@ class Vacancies extends ContentElement
     private $intVacancyId  = null;
     protected $strTemplate = 'lt_personio_vacancies';
 
+    protected $strWsUrl = null;
+
     public function __construct($objContainer, $strColumn)
     {
         parent::__construct($objContainer, $strColumn);
@@ -27,6 +29,8 @@ class Vacancies extends ContentElement
 
     public function generate()
     {
+        $this->strWsUrl = \Config::get('personio_webservice_url');
+
         if(TL_MODE === 'BE') {
             $this->Template = new BackendTemplate('be_wildcard');
             $this->Template->wildcard = '### Übersichtsseite + Detail zu Stellenangebot ###';
@@ -48,6 +52,12 @@ class Vacancies extends ContentElement
 
     public function compile()
     {
+        if(filter_var($this->strWsUrl, FILTER_VALIDATE_URL) === FALSE) {
+            $this->Template =  new FrontendTemplate('lt_personio_error');
+            return;
+        }
+
+        
         if(!is_null($this->intVacancyId) && is_numeric($this->intVacancyId)) {
 
             $arrVacancy = $this->getVacancyById(intval($this->intVacancyId));

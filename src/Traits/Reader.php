@@ -22,7 +22,8 @@ trait Reader
         return $objCache->get('jobs', function(ItemInterface $objItem) {
             $objItem->expiresAfter(86400);
 
-            $objXml  = simplexml_load_file('https://knskbplus-jobs.personio.de/xml?language=de', 'SimpleXMLElement', LIBXML_NOCDATA);
+            // $objXml  = simplexml_load_file('https://knskbplus-jobs.personio.de/xml?language=de', 'SimpleXMLElement', LIBXML_NOCDATA);
+            $objXml  = simplexml_load_file($this->strWsUrl, 'SimpleXMLElement', LIBXML_NOCDATA);
             $strJson = json_encode($objXml);
 
             return json_decode($strJson, true)['position'];
