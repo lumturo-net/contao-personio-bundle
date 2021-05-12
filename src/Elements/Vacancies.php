@@ -72,7 +72,7 @@ class Vacancies extends ContentElement
 
             $arrVacancies  = !empty($this->personio_company) ? $this->getVacanciesByCompany($this->personio_company) : $this->getVacancies();
             foreach($arrVacancies as $index => $arrVacancy) {
-                $arrVacancies[$index]['detailpage'] =  $strDetailpage . '/' . Helpers::slug($arrVacancy['name']) . ' - ' . $arrVacancy['id'] . '.html';
+                $arrVacancies[$index]['detailpage'] =  $strDetailpage . '/' . Helpers::slug($arrVacancy['name']) . '-' . $arrVacancy['id'] . '.html';
             }
 
             $this->Template->vacancies  = $arrVacancies;
