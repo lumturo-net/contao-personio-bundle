@@ -17,5 +17,18 @@ class TemplateInjector
          * Ausgabe in fe_page.html erfolgt mit $this->ogSubcompany
          */
         $objPageRegular->Template->ogSubcompany = $GLOBALS['personio']['ogContent']['subcompany'] ?? null;
+
+        $objPageRegular->Template->ogOffice   = $GLOBALS['personio']['ogContent']['office'] ?? null;
+        $objPageRegular->Template->ogKeywords = $GLOBALS['personio']['ogContent']['keywords'] ?? null;
+
+        $arrJobDesc = $GLOBALS['personio']['ogContent']['jobDescriptions']['jobDescription'];
+        if (!isset($arrJobDesc['value'])) {
+            $strDescription = $arrJobDesc[0]['value'];
+        } else {
+            $strDescription = $arrJobDesc['value'];
+        }
+        $strDescription = preg_replace('/\s{2,}/', '', str_replace(array("\r", "\n"), '', $strDescription));
+        $objPageRegular->Template
+            ->ogDescription = $strDescription;
     }
 }
