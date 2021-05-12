@@ -9,8 +9,12 @@ if(!empty($this->vacancies)): ?>
 <strong><?= $vacancy['recruitingCategory']; ?></strong><br>
 <strong><?= $vacancy['name']; ?></strong><br>
 <?php foreach($vacancy['jobDescriptions'] as $jobDescriptions): foreach($jobDescriptions as $jobDescription): ?>
+<?php if(is_array($jobDescription)) : ?>
 <strong><?= $jobDescription['name']; ?></strong>
 <p><?= $jobDescription['value']; ?></p>
+<?php else : ?>
+<?php echo $jobDescription ?>
+<?php endif; ?>
 <?php endforeach; endforeach; ?>
 <strong><?= $vacancy['employmentType']; ?></strong><br>
 <strong><?= $vacancy['seniority']; ?></strong><br>
