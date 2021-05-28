@@ -20,7 +20,7 @@ trait Reader
         $objCache = new FilesystemAdapter;
 
         return $objCache->get('jobs', function(ItemInterface $objItem) {
-            $objItem->expiresAfter(86400);
+            $objItem->expiresAfter(900);
 
             $objXml  = simplexml_load_file($this->strWsUrl, 'SimpleXMLElement', LIBXML_NOCDATA);
             $strJson = json_encode($objXml);
