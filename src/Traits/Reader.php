@@ -24,8 +24,13 @@ trait Reader
 
             $objXml  = simplexml_load_file($this->strWsUrl, 'SimpleXMLElement', LIBXML_NOCDATA);
             $strJson = json_encode($objXml);
+            $arrPositions = json_decode($strJson, true)['position'];
+            // Only one position
+            if (is_array($arrPositions) && !isset($arrPositions[0])) {
+                $arrPositions = [$arrPositions];
+            }
 
-            return json_decode($strJson, true)['position'];
+            return $arrPositions;
         });
     }
 
