@@ -3,6 +3,7 @@
 namespace LumturoNet\ContaoPersonioBundle\Traits;
 
 use LumturoNet\ContaoPersonioBundle\Helpers;
+use Psr\Cache\InvalidArgumentException;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Contracts\Cache\ItemInterface;
 
@@ -14,6 +15,7 @@ trait Reader
 {
     /**
      * @return mixed
+     * @throws InvalidArgumentException
      */
     private function getXml()
     {
