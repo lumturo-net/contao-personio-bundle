@@ -14,23 +14,52 @@ use InvalidArgumentException;
 use LumturoNet\ContaoPersonioBundle\Helpers;
 use LumturoNet\ContaoPersonioBundle\Traits\Reader;
 
+/**
+ *
+ */
 class Vacancies extends ContentElement
 {
     use Reader;
 
+    /**
+     * @var null
+     */
     private $intVacancyId  = null;
+    /**
+     * @var string
+     */
     protected $strTemplate = 'lt_personio_vacancies';
 
+    /**
+     * @var null
+     */
     protected $strWsUrl = null;
+    /**
+     * @var null
+     */
+    protected $strWsCacheKey = null;
+    /**
+     * @var null
+     */
+    protected $strWsCacheTime = null;
 
+    /**
+     * @param $objContainer
+     * @param $strColumn
+     */
     public function __construct($objContainer, $strColumn)
     {
         parent::__construct($objContainer, $strColumn);
     }
 
+    /**
+     * @return mixed
+     */
     public function generate()
     {
         $this->strWsUrl = \Config::get('personio_webservice_url');
+        $this->strWsCacheKey = \Config::get('personio_webservice_url');
+        $this->strWsCacheTime = \Config::get('personio_webservice_url');
 
         if (TL_MODE === 'BE') {
             $this->Template           = new BackendTemplate('be_wildcard');
@@ -50,6 +79,9 @@ class Vacancies extends ContentElement
         return parent::generate();
     }
 
+    /**
+     * @return void
+     */
     public function compile()
     {
         if (filter_var($this->strWsUrl, FILTER_VALIDATE_URL) === false) {

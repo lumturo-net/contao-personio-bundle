@@ -19,16 +19,19 @@ trait Reader
     {
         $objCache = new FilesystemAdapter;
 
-        return $objCache->get('jobs', function(ItemInterface $objItem) {
-            $objItem->expiresAfter(900);
+        return $objCache->get($this->strWsCacheKey, function(ItemInterface $objItem) {
+            $objItem->expiresAfter($this->strWsCacheTime);
 
             $objXml  = simplexml_load_file($this->strWsUrl, 'SimpleXMLElement', LIBXML_NOCDATA);
             $strJson = json_encode($objXml);
             $arrPositions = json_decode($strJson, true)['position'];
+
             // Only one position
             if (is_array($arrPositions) && !isset($arrPositions[0])) {
                 $arrPositions = [$arrPositions];
             }
+
+            $objItem->set($arrPositions);
 
             return $arrPositions;
         });
