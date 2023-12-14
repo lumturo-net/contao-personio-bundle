@@ -20,7 +20,7 @@ trait Reader
         $objCache = new FilesystemAdapter;
 
         return $objCache->get($this->strWsCacheKey, function(ItemInterface $objItem) {
-            $objItem->expiresAfter($this->strWsCacheTime);
+            $objItem->expiresAfter($this->intWsCacheTime);
 
             $objXml  = simplexml_load_file($this->strWsUrl, 'SimpleXMLElement', LIBXML_NOCDATA);
             $strJson = json_encode($objXml);

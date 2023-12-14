@@ -23,16 +23,16 @@ class Company
     /**
      * @var null
      */
-    protected $strWsCacheTime = null;
+    protected $intWsCacheTime = null;
 
     /**
      * @return array
      */
     public function getCompaniesAsOptions()
     {
-        $this->strWsUrl = \Config::get('personio_webservice_url');
-        $this->strWsCacheKey = \Config::get('personio_webservice_url');
-        $this->strWsCacheTime = \Config::get('personio_webservice_url');
+        $this->strWsUrl       = \Config::get('personio_webservice_url');
+        $this->strWsCacheKey  = \Config::get('personio_webservice_url');
+        $this->intWsCacheTime = \Config::get('personio_webservice_url');
 
         $arrVacancies = $this->getXml();
 
